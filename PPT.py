@@ -45,16 +45,15 @@ def main():
         print("Enter 3 for x^3")
         print("Enter 4 for a^x")
         select_model= int(input("Enter your selection: "))
+        a= year["Year"].shape[0]
         
-        if( select_model == 1 ):
-            a= year["Year"].shape[0]
+        if( select_model == 1 ) :
             b=c=d=e=0
             for i in range(0,a):
                 b+=year["Year"][i]
                 c+=cumulative["Cumulative World Production Since 1980 (Mb)"][i]
                 d+=year["Year"][i]**2
                 e+=year['Year'][i]*cumulative['Cumulative World Production Since 1980 (Mb)'][i]
-                print(a,b,c,d,e)
             x, y = symbols('x y')
             # Khai báo phương trình
             eq1 = Eq(a*x + b*y, c)
@@ -63,11 +62,20 @@ def main():
             y_values=linear_function(year,solution[y],solution[x])
             print(solution[x] , "+" ,solution[y],"x")   
             plt.plot(year,y_values, color="red" , label='Model')
-            plt.plot(year,cumulative, color="blue",label='Data')
+            plt.plot(year,cumulative, color="green",label='Data')
             plt.xlabel('Year')
             plt.ylabel('Cumulative World Production Since 1980 (Mb)')
             plt.title('Linear Model vs. Data')
             plt.legend()
             plt.show()
-        
+        if( select_model == 2 ) :
+            b=c=d=e=f=h=0
+            for i in range(0,a):
+                b+=year['Year'][i]
+                c+=cumulative["Cumulative World Production Since 1980 (Mb)"][i]
+                d+=year['Year'][i]**2
+                e+=year['Year'][i]**3
+                f+=year['Year'][i]*cumulative['Cumulative World Production Since 1980 (Mb)'][i]
+                h+=year['Year'][i]**2*cumulative['Cumulative World Production Since 1980 (Mb)'][i]
+                
 main()
